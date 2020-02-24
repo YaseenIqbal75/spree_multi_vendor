@@ -21,8 +21,8 @@
          <% if spree_current_user.present? && spree_current_user.admin? %>
           <div class="col-12 col-lg-4">
             <div class="form-group">
-              <%= f.label :q_uuid_cont, 'UUID' %>
-              <%= f.text_field 'q_uuid_eq', class: "form-control js-filterable" %>
+              <%= f.label :uuid_eq, 'UUID' %>
+              <%= f.text_field 'uuid_eq', class: "form-control js-filterable" %>
             </div>
           </div>
         <% end %>
