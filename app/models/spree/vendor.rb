@@ -53,7 +53,7 @@ module Spree
 
     scope :active, -> { where(state: 'active') }
 
-    self.whitelisted_ransackable_attributes = %w[name state]
+    self.whitelisted_ransackable_attributes = %w[name state uuid]
 
 
     def validate_dependent_presence
