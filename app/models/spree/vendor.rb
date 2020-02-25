@@ -41,6 +41,9 @@ module Spree
     has_many :calenders, through: :vendor_calenders
     has_many :orders
     has_many :users, through: :vendor_users
+    has_many :vendor_opted_questions
+    has_many :required_questions, through: :vendor_opted_questions
+    
     state_machine :state, initial: :pending do
       event :activate do
         transition to: :active
