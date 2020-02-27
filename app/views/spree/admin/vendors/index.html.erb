@@ -102,7 +102,10 @@
           </td>
           <td class="actions actions-2 text-right">
             <%= link_to_edit vendor, no_text: true, class: 'edit' if can?(:edit, vendor) %>
-            <%= link_to_delete vendor, no_text: true %>
+            <%#= link_to_delete vendor, no_text: true %>
+            <%= link_to admin_vendor_url(vendor), method: :delete, class: 'btn btn-danger btn-sm with-tip action-delete' do %>
+              <span class=" icon icon-delete"></span>
+            <% end %>
           </td>
         </tr>
       <% end %>

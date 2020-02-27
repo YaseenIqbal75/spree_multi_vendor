@@ -60,7 +60,7 @@ module Spree
 
 
     def validate_dependent_presence
-      dep_objects  = ['auctions','products','calenders']
+      dep_objects  = ['auctions','products']
       errors = []
       dep_objects.each do |dob|
         if self.send(dob.to_sym).any?
