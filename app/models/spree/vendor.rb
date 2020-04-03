@@ -78,6 +78,10 @@ module Spree
     def update_notification_email(email)
       update(notification_email: email)
     end
+    
+    def user
+      users.last
+    end
 
     private
 
