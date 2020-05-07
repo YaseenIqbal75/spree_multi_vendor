@@ -43,6 +43,7 @@ module Spree
     has_many :users, through: :vendor_users
     has_many :vendor_opted_questions
     has_many :required_questions, through: :vendor_opted_questions
+    has_many :prizes
     
     state_machine :state, initial: :pending do
       event :activate do
