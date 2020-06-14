@@ -2,7 +2,8 @@ module Spree::OrderDecorator
   def self.prepended(base)
     base.has_many :commissions, class_name: 'Spree::OrderCommission'
     base.state_machine.after_transition to: :complete, do: :generate_order_commissions
-    base.state_machine.after_transition to: :complete, do: :send_notification_mails_to_vendors
+    # base.state_machine.after_transition to: :complete, do: :send_notification_mails_to_vendors
+    base.state_machine.after_transition to: :complete, do: :notification_to_recipients
   end
 
   def generate_order_commissions
@@ -51,6 +52,18 @@ module Spree::OrderDecorator
       Spree::VendorMailer.vendor_notification_email(id, vendor_id).deliver_later
     end
   end
+
+  def notification_to_recipients
+    begin
+      OrderMailer.confirm_email(id).deliver_now
+      OrderMailer.confirm_email_to_vendor(id).deliver_now
+    rescue => e
+      Rails.logger.error e.to_s
+      Rails.logger.error e.message
+      Rails.logger.error e.backtrace.inspect
+    end
+  end
+
 end
 
 Spree::Order.prepend Spree::OrderDecorator
