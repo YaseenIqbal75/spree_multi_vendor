@@ -55,8 +55,8 @@ module Spree::OrderDecorator
 
   def notification_to_recipients
     begin
-      OrderMailer.confirm_email(id).deliver_now
-      OrderMailer.confirm_email_to_vendor(id).deliver_now
+      Spree::OrderMailer.confirm_email(id).deliver_now
+      Spree::OrderMailer.confirm_email_to_vendor(id).deliver_now
     rescue => e
       Rails.logger.error e.to_s
       Rails.logger.error e.message
