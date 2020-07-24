@@ -7,11 +7,8 @@ module Spree
     friendly_id :name, use: %i[slugged history]
 
     validates :name,
-      presence: true,
-      uniqueness: { case_sensitive: false },
-      format: { with: /\A[A-Za-z0-9\ ]+\z/, message: Spree.t('only_alphanumeric_chars') }
-
-    validates :slug, uniqueness: true
+      presence: true
+    
     if Spree.version.to_f >= 3.6
       validates_associated :image
     end
